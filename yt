@@ -10,7 +10,10 @@ usage() {
 
 check_deps() {
 	for dep in "yt-dlp" "jq" "sed" "feh" ; do
-		command -v "$dep" >/dev/null || echo "$dep not found"
+		if ! command -v "$dep" >/dev/null ; then
+			echo "$dep not found, exiting..."
+			exit 1
+		fi
 	done
 }
 
